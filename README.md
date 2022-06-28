@@ -3,6 +3,9 @@
 UtilityPackage priovides the necessary classes, extensions, protocols and helpers for your swift project. You can speed up your development time and save lines of code by using this package.
 
 UtilityPackage offers many things here are the details and usage examples.
+## Installation
+## Swift Package Manager
+Go to `File | Swift Packages | Add Package Dependency...` in Xcode and search for "UtilityPackage".
 
 # NetworkManager
 It's a advance NetworkInterface to execute your web services, it developed over combine framework, This single class is itself enough to fulfill all your web services requrements. You can easily modularize your web-serices.
