@@ -5,7 +5,7 @@ UtilityPackage priovides the necessary classes, extensions, protocols and helper
 UtilityPackage offers many things here are the details and usage examples.
 ## Installation
 ## Swift Package Manager
-Go to `File | Swift Packages | Add Package Dependency...` in Xcode and search for "UtilityPackage". or 
+Go to `File | Swift Packages | Add Package Dependency...` in Xcode and search for "UtilityPackage".
 ```swift
 let package = Package(
     dependencies: [
