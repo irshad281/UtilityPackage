@@ -9,7 +9,7 @@ Go to `File | Swift Packages | Add Package Dependency...` in Xcode and search fo
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/irshad281/UtilityPackage", from: "1.0")
+        .package(url: "https://github.com/irshad281/UtilityPackage")
     ],
 )
 ```
