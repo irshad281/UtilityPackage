@@ -3,6 +3,16 @@
 UtilityPackage priovides the necessary classes, extensions, protocols and helpers for your swift project. You can speed up your development time and save lines of code by using this package.
 
 UtilityPackage offers many things here are the details and usage examples.
+## Installation
+## Swift Package Manager
+Go to `File | Swift Packages | Add Package Dependency...` in Xcode and search for "UtilityPackage".
+```swift
+let package = Package(
+    dependencies: [
+        .package(url: "https://github.com/irshad281/UtilityPackage")
+    ],
+)
+```
 
 # NetworkManager
 It's a advance NetworkInterface to execute your web services, it developed over combine framework, This single class is itself enough to fulfill all your web services requrements. You can easily modularize your web-serices.
@@ -283,3 +293,31 @@ let userModelData = try? userModel.asRequestBody()
 ```
 # OTPView
 Taking otp input in the app easily by using OTPView class. It's fully customizable based on your requirements.
+
+![OTP-View](https://user-images.githubusercontent.com/19393497/177251047-4659517f-6fd7-48d3-b767-696720ea549e.jpg)
+
+# ImagePicker
+It's a simple and easy to use class to pick photos from `camera` and `gallery`
+
+### 1. Show Image picker with action sheet
+Pass your view in parameter like `ImagePicker.shared.showImagePicker(from: view)` if you are running in iPad.
+```swift
+ImagePicker.shared.showImagePicker(from: nil) { pickedImage in
+    if let image = pickedImage {
+       // do your work with image..
+    }
+}
+```
+
+### 2. Pick Image from a source type like camera or gallery.
+```swift
+ImagePicker.shared.pickImage(from: .photoLibrary) { pickedImage in
+    if let image = pickedImage {
+        // do your work with image..
+    }
+}
+```
+
+
+https://user-images.githubusercontent.com/19393497/177253148-d18c7d86-9e5f-44e2-ad5a-39cd57c2afd4.mov
+
