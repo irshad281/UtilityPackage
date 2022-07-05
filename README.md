@@ -293,3 +293,6 @@ let userModelData = try? userModel.asRequestBody()
 ```
 # OTPView
 Taking otp input in the app easily by using OTPView class. It's fully customizable based on your requirements.
+
+![OTP-View](https://user-images.githubusercontent.com/19393497/177251047-4659517f-6fd7-48d3-b767-696720ea549e.jpg)
+
