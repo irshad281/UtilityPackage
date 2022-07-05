@@ -296,3 +296,28 @@ Taking otp input in the app easily by using OTPView class. It's fully customizab
 
 ![OTP-View](https://user-images.githubusercontent.com/19393497/177251047-4659517f-6fd7-48d3-b767-696720ea549e.jpg)
 
+# ImagePicker
+It's a simple and easy to use class to pick photos from `camera` and `gallery`
+
+## 1. Show Image picker with action sheet
+Pass your view in parameter like `ImagePicker.shared.showImagePicker(from: view)` if you are running in iPad.
+```swift
+ImagePicker.shared.showImagePicker(from: nil) { pickedImage in
+    if let image = pickedImage {
+       // do your work with image..
+    }
+}
+```
+
+## 2. Pick Image from a source type like camera or gallery.
+```swift
+ImagePicker.shared.pickImage(from: .photoLibrary) { pickedImage in
+    if let image = pickedImage {
+        // do your work with image..
+    }
+}
+```
+
+
+https://user-images.githubusercontent.com/19393497/177253148-d18c7d86-9e5f-44e2-ad5a-39cd57c2afd4.mov
+
