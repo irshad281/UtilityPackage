@@ -14,7 +14,7 @@ public extension NSDirectionalEdgeInsets {
 
 public class Layout {
     
-    // MARK: - Get Horizontal
+    // MARK: - Get Grid Layout
     /// Add header view to respective section
     /// - Parameters:
     ///   - itemWidth: Item Width
@@ -44,6 +44,16 @@ public class Layout {
         )
     }
     
+    // MARK: - Get Grid Layout Section
+    /// Layout Section like Grid
+    /// - Parameters:
+    ///   - itemWidth: item width
+    ///   - itemHeight: item height
+    ///   - itemSpacing: spacing between 2 items
+    ///   - contentInsets: section Insets
+    ///   - headerView: header view to be added
+    ///   - footerView: foote view to be added
+    /// - Returns: NSCollectionLayoutSection
     public class func gridLayoutSection(
         itemWidth: NSCollectionLayoutDimension = .estimated(50),
         itemHeight: NSCollectionLayoutDimension = .absolute(40),
@@ -74,45 +84,13 @@ public class Layout {
         section.contentInsets = contentInsets
             
         if let headerView = headerView {
-            addHeaderFooterTo(section: section, view: headerView)
+            section.addHeaderFooterView(headerView)
         }
         
         if let footerView = footerView {
-            addHeaderFooterTo(section: section, view: footerView)
+            section.addHeaderFooterView(footerView)
         }
         
         return section
-    }
-}
-
-private extension Layout {
-    
-    // MARK: - Add Header Footer To Section
-    /// Add header view to respective section
-    /// - Parameters:
-    ///   - section: NSCollectionLayoutSection which needs to have header view
-    class func addHeaderFooterTo(section: NSCollectionLayoutSection, view: HeaderFooterView) {
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: .init(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: view.height
-            ),
-            elementKind: view.identifier,
-            alignment: view.position
-        )
-        section.boundarySupplementaryItems.append(header)
-    }
-}
-
-
-public struct HeaderFooterView {
-    let identifier: String
-    let position: NSRectAlignment
-    let height: NSCollectionLayoutDimension
-    
-    public init(identifier: String, position: NSRectAlignment, height: NSCollectionLayoutDimension) {
-        self.identifier = identifier
-        self.position = position
-        self.height = height
     }
 }

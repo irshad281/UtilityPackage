@@ -21,4 +21,9 @@ public extension UIDevice {
         let value = UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown
         return value
     }
+    
+    static var isLandscape: Bool {
+        let value = UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight
+        return value
+    }
 }
