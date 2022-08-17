@@ -90,6 +90,60 @@ fileprivate extension OtpField {
         }
     }
     
+    @IBInspectable public var shadowOpacity: Float = .zero {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var shadowRadius: CGFloat = .zero {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var shadowOffset: CGSize = .zero {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var shadowColor: UIColor = .lightGray {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var spacingBetweenFields: CGFloat = 10 {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var fieldCornerRadius: CGFloat = .zero {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var borderWidth: CGFloat = .zero {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var borderColor: UIColor = .clear {
+        didSet{
+            setupViews()
+        }
+    }
+    
+    @IBInspectable public var fieldBackgroundColor: UIColor = .white {
+        didSet{
+            setupViews()
+        }
+    }
+    
     private var otpFields = [OtpField]()
     private var borderLine: [UIImageView]! = []
     
@@ -136,7 +190,7 @@ fileprivate extension OtpField {
         
         let width = self.frame.width / CGFloat(numberOfFields)
         let height = self.frame.height
-        let spacing: CGFloat = 10
+        let spacing = spacingBetweenFields
         
         for index in 0...numberOfFields - 1 {
             let xPosition: CGFloat = index == .zero ? .zero : (CGFloat(index) * width)
@@ -151,7 +205,17 @@ fileprivate extension OtpField {
             field.tintColor = self.tintColor
             field.delegate = self
             field.textColor = txtColor
+            field.layer.cornerRadius = fieldCornerRadius
+            field.layer.borderWidth = borderWidth
+            field.layer.borderColor = borderColor.cgColor
+            field.backgroundColor = fieldBackgroundColor
             field.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+            
+            // Add Shadow
+            field.layer.shadowOpacity = shadowOpacity
+            field.layer.shadowRadius = shadowRadius
+            field.layer.shadowOffset = shadowOffset
+            field.layer.shadowColor = shadowColor.cgColor
             
             let line = UIImageView(frame: CGRect(x: field.frame.origin.x, y: height - 1, width: field.frame.width, height: 2))
             
@@ -165,6 +229,9 @@ fileprivate extension OtpField {
             
             borderLine.append(line)
         }
+        
+        setupFonts()
+        setupColor()
     }
     
     private func setupFonts() {
