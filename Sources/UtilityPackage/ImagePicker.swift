@@ -30,8 +30,10 @@ import UIKit
 public class ImagePicker: NSObject {
     public static let shared = ImagePicker()
     public typealias ImageCompletion = ((UIImage?, String?) -> Void)
+    public typealias ImageDataCompletion = ((Data?, String?) -> Void)
     
     private var imageClosure: ImageCompletion?
+    public var imageDataClosure: ImageDataCompletion?
     private override init() { }
     
     public func showImagePicker(from sourceView: UIView?, completion: ImageCompletion?) {
@@ -92,6 +94,9 @@ extension ImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDe
             let filename = (info[.imageURL] as? URL)?.lastPathComponent
             if let pickedImage = info[.originalImage] as? UIImage {
                 self.imageClosure?(pickedImage, filename)
+            }
+            if let url = info[.imageURL] as? URL, let data = try? Data(contentsOf: url) {
+                self.imageDataClosure?(data, filename)
             }
         }
     }
