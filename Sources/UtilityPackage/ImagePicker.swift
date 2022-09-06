@@ -29,8 +29,8 @@ import UIKit
 
 public class ImagePicker: NSObject {
     public static let shared = ImagePicker()
+    public typealias ImageCompletion = ((UIImage?, String?) -> Void)
     
-    public typealias ImageCompletion = ((UIImage?) -> Void)
     private var imageClosure: ImageCompletion?
     private override init() { }
     
@@ -89,8 +89,9 @@ public class ImagePicker: NSObject {
 extension ImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) {
-            if let pickedImage = info[.originalImage]as? UIImage {
-                self.imageClosure?(pickedImage)
+            let filename = (info[.imageURL] as? URL)?.lastPathComponent
+            if let pickedImage = info[.originalImage] as? UIImage {
+                self.imageClosure?(pickedImage, filename)
             }
         }
     }
