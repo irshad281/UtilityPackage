@@ -43,4 +43,11 @@ public extension UICollectionView {
         
         return cell
     }
+    
+    func supplementaryViewOfKind<T: UICollectionReusableView>(atIndexPath indexPath: IndexPath) -> T where T: ViewRegistrable {
+        guard let view = dequeueReusableSupplementaryView(ofKind: T.identifier, withReuseIdentifier: T.identifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue supplementaryElementOfKind with identifier: \(T.identifier)")
+        }
+        return view
+    }
 }
